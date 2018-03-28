@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -6,6 +6,17 @@ import * as moment from 'moment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  public currTime = moment().format('hh:MM');
+export class AppComponent implements OnInit {
+  public currTime = moment().format('hh:mm');
+
+  constructor() {}
+
+  ngOnInit() {
+    setTimeout(() => {
+      console.log(this.currTime);
+      this.currTime = moment().format('hh:mm');
+
+      this.ngOnInit();
+    }, 1000);
+  }
 }
